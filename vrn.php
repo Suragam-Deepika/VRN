@@ -38,7 +38,7 @@
 	$state_name = $States[$state_replace];  	#AP
 	echo "State name: $state_name\n";
 	#$b = "eastgodavari";
-	$b = $_REQEUST['district_name'];
+	$b = $_REQUEST['district_name'];
 	$dist_replace= str_replace(' ', '', $b);
 	$dist_name = $$state_name[$dist_replace];
 	echo "District name: $dist_name";
