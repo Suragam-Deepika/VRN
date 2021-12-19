@@ -44,7 +44,7 @@
 	$district_lower = strtolower($b);
 	$dist_replace= str_replace(' ', '', $district_lower);
 	$dist_name = $$state_name[$dist_replace];
-	echo "District name: $dist_name";
+	#echo "District name: $dist_name";
 	
 	if (is_array($dist_name))
 	{
