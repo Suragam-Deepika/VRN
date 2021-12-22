@@ -33,13 +33,13 @@
     $JK = array("srinagar"=>1,"poonch"=>12,"jammu"=>2,"pulwama"=>13,"anantnag"=>3,"udhampur"=>14,"budgam"=>4,"bandipora"=>15,"baramulla"=>5,"ganderbal"=>16,"doda"=>6,"kishtwar"=>17,"kargil"=>7,"kulgam"=>18,"kathua"=>8,"ramban"=>19,"kupwara"=>9,"reasi"=>20,"leh"=>10,"samba"=>21,"rajouri"=>11,"shopian"=>22);
 
 	$number_type= $_POST['number_type'];
-	echo "Number Type: $number_type";
+	#echo "Number Type: $number_type";
 	#$a = "andhra pradesh";
 	$a = $_POST['state_name'];
 	$s = strtolower($a);
 	$state_replace = str_replace(' ', '', $s);
 	$state_name = $States[$state_replace];  	#AP
-	echo "State name: $state_name\n";
+	#echo "State name: $state_name\n";
 	#$b = "eastgodavari";
 	$b = $_POST['district_name'];
 	$district_lower = strtolower($b);
