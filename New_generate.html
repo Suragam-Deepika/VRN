@@ -28,10 +28,11 @@
 			/*background-color: #D6EEEE; */
 			background-color: #99C68E;
 		}
-		select { 
+		/* select { 
 			text-indent: 20px; 
-		}
+		 } */
 		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			var unitLists = new Array(2) 
 			unitLists["0"] = ["Select District"]; 			
@@ -71,6 +72,20 @@
     				}
  			}
 			</script>
+			<script>
+				$(document).ready(function(){     
+				
+				$('#discountselection').hide();
+				
+						$('#general').click(function(){
+							$('#discountselection').hide();
+						});
+				
+						$('#fancy').click(function(){
+							$('#discountselection').show();
+						});
+				});
+			</script>
 	</head>
 	<body>
 		<br>
@@ -100,6 +115,39 @@
 				<label for='general'>General</label>
 				<input type='radio' id='fancy' name='number_type' value='fancy'>
 				<label for='fancy'>Fancy</label>
+				<select name="discountselection" id="discountselection" style="max-width:100%;">
+					<option value="" selected="selected">Select</option>
+					<option value="1s">All 1s</option>
+					<option value="2s">All 2s</option>
+					<option value="3s">All 3s</option>
+					<option value="4s">All 4s</option>
+					<option value="5s">All 5s</option>
+					<option value="6s">All 6s</option>
+					<option value="7s">All 7s</option>
+					<option value="8s">All 8s</option>
+					<option value="9s">All 9s</option>
+					<option value="11s">11xx series</option>
+					<option value="22s">22xx series</option>
+					<option value="33s">33xx series</option>
+					<option value="44s">44xx series</option>
+					<option value="55s">55xx series</option>
+					<option value="66s">66xx series</option>
+					<option value="77s">77xx series</option>
+					<option value="88s">88xx series</option>
+					<option value="99s">99xx series</option>
+					<option value="111s">111x series</option>
+					<option value="222s">222x series</option>
+					<option value="333s">333x series</option>
+					<option value="444s">444x series</option>
+					<option value="555s">555x series</option>
+					<option value="666s">666x series</option>
+					<option value="777s">777x series</option>
+					<option value="888s">888x series</option>
+					<option value="999s">999x series</option>
+					<option value="2sq">2s sequence</option>
+					<option value="3sq">3s sequence</option>
+					<option value="4sq">4s sequence</option>
+				</select>  
 			</td>
 		</tr>
 		<tr>
