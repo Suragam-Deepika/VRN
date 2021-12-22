@@ -1,4 +1,5 @@
 <?php
+	$vrn = "";
 	if(isset($_POST['submit_data']))
 	{
 	$States = array("andamanandnicobar"=> 'AN', "andhrapradesh"=> 'AP', "arunachalpradesh"=> 'AR', "assam"=> 'AS',
@@ -175,7 +176,6 @@
 		<h2 align='center' style="color:black"> Vehicle Regirastation Number -Automated Number Generation</h2>
 		<br>
 		<form action="" method='POST'>
-		<?php echo "Vehicle Number is: $vrn\n";	?>
 		<table>
 		<tr style="background-color:#4CC417">
 			<th>State</th>
@@ -205,7 +205,13 @@
 			<td colspan='3'><input align='center' type="submit" name='submit_data' value="Generate Number"></td>
 		</tr>
 		</table>
-		
+		<br>
+		<?php 
+			if ($vrn != "")
+			{
+				echo "Vehicle Number is: $vrn\n";
+			}
+		?>
 		</form>
 	</body>
 </html>
