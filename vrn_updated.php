@@ -76,7 +76,7 @@
 	}
 	#echo "Random string: $vehicle_str\n";
 	$random_vehicle_number = rand(0, 9999);
-	if ($random_vehicle_number < 1000 || $random_vehicle_number < 1000 || $random_vehicle_number < 1000)
+	if ($random_vehicle_number < 1000 || $random_vehicle_number < 100 || $random_vehicle_number < 10)
 	{
 		if (strlen($random_vehicle_number) == 3)
 		{
