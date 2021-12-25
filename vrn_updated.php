@@ -180,7 +180,7 @@
 
 <html>	
 	<head>
-		<title>Vehicle Regirastation Number</title>
+		<title>Vehicle Registration Number</title>
 		<style>
 		body 
 			{
