@@ -34,6 +34,8 @@
 
 	$number_type= $_POST['number_type'];
 	#echo "Number Type: $number_type";
+	$fancy_num_type = $_POST['discountselection'];
+	#echo "Fancy number type: $fancy_num_type";
 	#$a = "andhra pradesh";
 	$a = $_POST['state_name'];
 	$s = strtolower($a);
@@ -75,29 +77,108 @@
 		$vehicle_str .= $random_chars[rand(0, 25)];
 	}
 	#echo "Random string: $vehicle_str\n";
-	$random_vehicle_number = rand(0, 9999);
-	if ($random_vehicle_number < 1000 || $random_vehicle_number < 100 || $random_vehicle_number < 10)
+	
+	function general_number()
 	{
-		if (strlen($random_vehicle_number) == 3)
+		$random_vehicle_number = rand(0, 9999);
+		if ($random_vehicle_number < 1000 || $random_vehicle_number < 100 || $random_vehicle_number < 10)
 		{
-			$random_vehicle_number = "0".$random_vehicle_number;
+			if (strlen($random_vehicle_number) == 3)
+			{
+				$random_vehicle_number = "0".$random_vehicle_number;
+			}	
+			if (strlen($random_vehicle_number) == 2)
+			{
+				$random_vehicle_number = "00".$random_vehicle_number;
+			}
+			if (strlen($random_vehicle_number) == 1)
+			{
+				$random_vehicle_number = "000".$random_vehicle_number;
+			}
 		}
-		if (strlen($random_vehicle_number) == 2)
-		{
-			$random_vehicle_number = "00".$random_vehicle_number;
-		}
-		if (strlen($random_vehicle_number) == 1)
-		{
-			$random_vehicle_number = "000".$random_vehicle_number;
-		}
+		return $random_vehicle_number;
 	}
+	
+	function years_series($fancy_num_type)
+	{
+		if ($fancy_num_type == "yr")
+		{	
+			$yr_series = rand(1900, 2099);
+			return $yr_series;
+		}	
+		if ($fancy_num_type == "2sq")
+		{
+			$two_sq_series = rand(0,8);
+			$second_nmbr = $two_sq_series + 1;
+			$next_nmbr = rand(10, 99);
+			$yr_series = $two_sq_series . $second_nmbr . $next_nmbr;
+			return $yr_series;
+		}	
+		if ($fancy_num_type == "3sq")
+		{
+			$two_sq_series = rand(0,8);
+			$second_nmbr = $two_sq_series + 1;
+			$third_nmbr = $second_nmbr + 1;
+			$len_check = $two_sq_series . $second_nmbr . $third_nmbr;
+			if (strlen($len_check) <4)
+			{
+				$next_nmbr = rand(0, 9);
+				$yr_series = $two_sq_series . $second_nmbr . $third_nmbr . $next_nmbr;
+				return $yr_series;
+			}
+			else
+			{
+				$yr_series = $two_sq_series . $second_nmbr . $third_nmbr;
+				return $yr_series;
+			}
+		}	
+		if ($fancy_num_type == "4sq")
+		{
+			$two_sq_series = rand(0,8);
+			$second_nmbr = $two_sq_series + 1;
+			$third_nmbr = $second_nmbr + 1;
+			$len_check = $two_sq_series . $second_nmbr . $third_nmbr;
+			if ($third_nmbr == 9)
+			{
+				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr . 0;
+				return $yr_series;
+			}
+			if (strlen($len_check) <4)
+			{
+				$fourth_nmbr = $third_nmbr + 1;
+				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr . $fourth_nmbr;
+				return $yr_series;
+			}
+			else
+			{
+				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr;
+				return $yr_series;
+			}
+		}	
+		else
+		{
+			$yr_series = "NULL";
+			return $yr_series;
+		}
+	}	
+
+	if ($number_type == 'general')
+	{
+		$vrn_number = general_number();
+	}
+	
+	if ($number_type == 'fancy')
+	{
+		$vrn_number = years_series($fancy_num_type);
+	}
+	
 	#echo "Random vehicle number: $random_vehicle_number\n";
-	$vrn = $state_name ." ". $dist_name ." ". $vehicle_str ." ". $random_vehicle_number;
+	$vrn = $state_name ." ". $dist_name ." ". $vehicle_str ." ". $vrn_number;
 	#echo "Vehicle Number is: $vrn\n";	
 	}
 ?>
 
-<html>
+<html>	
 	<head>
 		<title>Vehicle Regirastation Number</title>
 		<style>
@@ -135,7 +216,7 @@
 		<script type="text/javascript">
 			var unitLists = new Array(2) 
 			unitLists["0"] = ["Select District"]; 			
-			unitLists["Andhra Pradesh"] = ["Krishna","Guntur","Kadapa","Kurnool","Prakasam","Chitoor","Ananthapur"];
+			unitLists["Andhra Pradesh"] = ["Krishna","Guntur","Kadapa","Kurnool","Prakasam","Chittoor","Ananthapur"];
 			unitLists["Bihar"] = ["111","222","333","444","555","666"];
  
  
@@ -210,7 +291,7 @@
     		<option value="0">Select District</option>
     		</select></td>
 			<td>
-				<input type='radio' id='general' name='number_type' value='general'>
+				<input type='radio' id='general' name='number_type' value='general' checked>
 				<label for='general'>General</label>
 				<input type='radio' id='fancy' name='number_type' value='fancy'>
 				<label for='fancy'>Fancy</label>
@@ -246,6 +327,7 @@
 					<option value="2sq">2s sequence</option>
 					<option value="3sq">3s sequence</option>
 					<option value="4sq">4s sequence</option>
+					<option value="yr">Years</option>
 				</select> 
 			</td>
 		</tr>
@@ -254,12 +336,14 @@
 		</tr>
 		</table>
 		<br>
+		<p style="text-align:center">
 		<?php 
 			if ($vrn != "")
 			{
 				echo "Vehicle Number is: $vrn\n";
 			}
 		?>
+		</p>
 		</form>
 	</body>
 </html>
