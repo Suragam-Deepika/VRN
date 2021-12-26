@@ -197,28 +197,57 @@
 		$conn = mysqli_connect("localhost", "root", "", "numbers");        
 		// Check connection
 		if($conn === false){
+			die("ERROR: Could not connect. " . mysqlI_connect_error());
+		}
+		$status_check = mysqli_query($conn,"SELECT COUNT(*) as count FROM vrn_data WHERE vehicle_number='$vrn_data'");
+		$row =  mysqli_fetch_assoc($status_check);
+		return $row['count'];
+	}
+	
+	function insert_vehicle_numbers($state_name, $district_name, $vehicle_number)
+	{
+		$conn = mysqli_connect("localhost", "root", "", "numbers");        
+		// Check connection
+		if($conn === false){
 			die("ERROR: Could not connect. " . mysqli_connect_error());
 		}
-		$status_check = mysqli_query($conn,"SELECT COUNT(*) FROM vrn_data WHERE vehicle_number=$vrn_data");
-		$count = mysqli_num_rows($status_check);
-		return $count;
+		$sql = "INSERT INTO `vrn_data` (`state`, `district`, `vehicle_number`) VALUES ('$state_name', '$district_name', '$vehicle_number')";
+		if (mysqli_query($conn, $sql)){
+           echo ""; 
+		} else{
+			echo "ERROR: Hush! Sorry $sql." . mysqli_error($conn);
+		}
+          
+        // Close connection
+        mysqli_close($conn);
 	}
 	
 	#Calling general type function based on user selection
 	if ($number_type == 'general')
 	{
 		$vrn_number = general_number();
-		$nmbr_sts_check = vrn_status_check($vrn_number);
-		echo "$nmbr_sts_check";	
 	}
-	
-	#Calling fancy type function based on user selection
 	if ($number_type == 'fancy')
 	{
 		$vrn_number = years_series($fancy_num_type);
 	}
-	
 	$vrn = $state_name ." ". $dist_name ." ". $vehicle_str ." ". $vrn_number;
+	$nmbr_sts_check = vrn_status_check($vrn);
+	while ($nmbr_sts_check > 0)
+	{
+		if ($number_type == 'general')
+		{
+			$vrn_number = general_number();	
+		}
+		elseif ($number_type == 'fancy')
+		{
+			$vrn_number = years_series($fancy_num_type);
+		}
+		$vrn = $state_name ." ". $dist_name ." ". $vehicle_str ." ". $vrn_number;
+		$nmbr_sts_check = vrn_status_check($vrn);
+	}
+	insert_vehicle_numbers($a, $b, $vrn);
+	}
 	}
 ?>
 
