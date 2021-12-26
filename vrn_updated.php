@@ -32,10 +32,6 @@
     $GJ = array("ahmedabad"=>1,"bardoli"=>19,"dahod"=>20,"mehsana"=>2,"navsari"=>21,"rajkot"=>3,"rajpipla"=>22,"bhavnagar"=>4,"anand"=>23,"surat"=>5,"patan"=>24,"vadodara"=>6,"porbander"=>25,"nadiad"=>7,"vyara"=>26,"palanpur"=>8,"ahmedabadeast"=>27,"himmatnagar"=>9,"surat"=>28,"pal"=>28,"jamnagar"=>10,"vadodara"=>29,"darjipura"=>29,"junagadh"=>11,"ahvadang"=>30,"bhuj"=>12,"modasa"=>31,"arvalli"=>31,"surendranagar"=>13,"veraval"=>32,"girsomnath"=>32,"amreli"=>14,"botad"=>33,"valsad"=>15,"chhotaUdepur"=>34,"bharuch"=>16,"mahisagar"=>35,"lunawada"=>35,"godhra"=>17,"morbi"=>36,"gandhinagar"=>18,"khambhaliya"=>37,"bavla"=>38);
     $JK = array("srinagar"=>1,"poonch"=>12,"jammu"=>2,"pulwama"=>13,"anantnag"=>3,"udhampur"=>14,"budgam"=>4,"bandipora"=>15,"baramulla"=>5,"ganderbal"=>16,"doda"=>6,"kishtwar"=>17,"kargil"=>7,"kulgam"=>18,"kathua"=>8,"ramban"=>19,"kupwara"=>9,"reasi"=>20,"leh"=>10,"samba"=>21,"rajouri"=>11,"shopian"=>22);
 
-	$number_type= $_POST['number_type'];
-	#echo "Number Type: $number_type";
-	$fancy_num_type = $_POST['discountselection'];
-	#echo "Fancy number type: $fancy_num_type";
 	#$a = "andhra pradesh";
 	$a = $_POST['state_name'];
 	$s = strtolower($a);
@@ -99,82 +95,47 @@
 		return $random_vehicle_number;
 	}
 	
-	function years_series($fancy_num_type)
+	function vrn_status_check($vrn_data)
 	{
-		if ($fancy_num_type == "yr")
-		{	
-			$yr_series = rand(1900, 2099);
-			return $yr_series;
-		}	
-		if ($fancy_num_type == "2sq")
-		{
-			$two_sq_series = rand(0,8);
-			$second_nmbr = $two_sq_series + 1;
-			$next_nmbr = rand(10, 99);
-			$yr_series = $two_sq_series . $second_nmbr . $next_nmbr;
-			return $yr_series;
-		}	
-		if ($fancy_num_type == "3sq")
-		{
-			$two_sq_series = rand(0,8);
-			$second_nmbr = $two_sq_series + 1;
-			$third_nmbr = $second_nmbr + 1;
-			$len_check = $two_sq_series . $second_nmbr . $third_nmbr;
-			if (strlen($len_check) <4)
-			{
-				$next_nmbr = rand(0, 9);
-				$yr_series = $two_sq_series . $second_nmbr . $third_nmbr . $next_nmbr;
-				return $yr_series;
-			}
-			else
-			{
-				$yr_series = $two_sq_series . $second_nmbr . $third_nmbr;
-				return $yr_series;
-			}
-		}	
-		if ($fancy_num_type == "4sq")
-		{
-			$two_sq_series = rand(0,8);
-			$second_nmbr = $two_sq_series + 1;
-			$third_nmbr = $second_nmbr + 1;
-			$len_check = $two_sq_series . $second_nmbr . $third_nmbr;
-			if ($third_nmbr == 9)
-			{
-				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr . 0;
-				return $yr_series;
-			}
-			if (strlen($len_check) <4)
-			{
-				$fourth_nmbr = $third_nmbr + 1;
-				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr . $fourth_nmbr;
-				return $yr_series;
-			}
-			else
-			{
-				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr;
-				return $yr_series;
-			}
-		}	
-		else
-		{
-			$yr_series = "NULL";
-			return $yr_series;
+		$conn = mysqli_connect("localhost", "root", "", "numbers");        
+		// Check connection
+		if($conn === false){
+			die("ERROR: Could not connect. " . mysqlI_connect_error());
 		}
-	}	
-
-	if ($number_type == 'general')
-	{
-		$vrn_number = general_number();
+		$status_check = mysqli_query($conn,"SELECT COUNT(*) as count FROM vrn_data WHERE vehicle_number='$vrn_data'");
+		$row =  mysqli_fetch_assoc($status_check);
+		return $row['count'];
 	}
 	
-	if ($number_type == 'fancy')
+	function insert_vehicle_numbers($state_name, $district_name, $vehicle_number)
 	{
-		$vrn_number = years_series($fancy_num_type);
+		$conn = mysqli_connect("localhost", "root", "", "numbers");        
+		// Check connection
+		if($conn === false){
+			die("ERROR: Could not connect. " . mysqli_connect_error());
+		}
+		$sql = "INSERT INTO `vrn_data` (`state`, `district`, `vehicle_number`) VALUES ('$state_name', '$district_name', '$vehicle_number')";
+		if (mysqli_query($conn, $sql)){
+           echo ""; 
+		} else{
+			echo "ERROR: Hush! Sorry $sql." . mysqli_error($conn);
+		}
+          
+        // Close connection
+        mysqli_close($conn);
 	}
 	
-	#echo "Random vehicle number: $random_vehicle_number\n";
+	#Calling general type function based on user selection
+	$vrn_number = general_number();	
 	$vrn = $state_name ." ". $dist_name ." ". $vehicle_str ." ". $vrn_number;
-	#echo "Vehicle Number is: $vrn\n";	
+	$nmbr_sts_check = vrn_status_check($vrn);
+	while ($nmbr_sts_check > 0)
+	{
+		$vrn_number = general_number();	
+		$vrn = $state_name ." ". $dist_name ." ". $vehicle_str ." ". $vrn_number;
+		$nmbr_sts_check = vrn_status_check($vrn);
+	}
+	insert_vehicle_numbers($a, $b, $vrn);
 	}
 ?>
 
@@ -252,31 +213,16 @@
     				}
  			}
 			</script>
-			<script>
-				$(document).ready(function(){     
-				
-				$('#discountselection').hide();
-				
-						$('#general').click(function(){
-							$('#discountselection').hide();
-						});
-				
-						$('#fancy').click(function(){
-							$('#discountselection').show();
-						});
-				});
-			</script>
 	</head>
 	<body>
 		<br>
-		<h2 align='center' style="color:black"> Vehicle Regirastation Number -Automated Number Generation</h2>
+		<h2 align='center' style="color:black"> Vehicle Registration Number -Automated Number Generation</h2>
 		<br>
 		<form action="" method='POST'>
 		<table>
 		<tr style="background-color:#4CC417">
 			<th>State</th>
 			<th>District</th>
-			<th>Number type</th>
 		</tr>
 		<tr>
     		<td><select name='state_name' style="width:150px;"  id="uc_selector_main" onchange="unitMenuChange(this);">
@@ -290,46 +236,6 @@
     		<td><select name='district_name' style="width:150px;" id="uc_selector">
     		<option value="0">Select District</option>
     		</select></td>
-			<td>
-				<input type='radio' id='general' name='number_type' value='general' checked>
-				<label for='general'>General</label>
-				<input type='radio' id='fancy' name='number_type' value='fancy'>
-				<label for='fancy'>Fancy</label>
-				<select name="discountselection" id="discountselection" style="max-width:100%;">
-					<option value="" selected="selected">Select</option>
-					<option value="1s">All 1s</option>
-					<option value="2s">All 2s</option>
-					<option value="3s">All 3s</option>
-					<option value="4s">All 4s</option>
-					<option value="5s">All 5s</option>
-					<option value="6s">All 6s</option>
-					<option value="7s">All 7s</option>
-					<option value="8s">All 8s</option>
-					<option value="9s">All 9s</option>
-					<option value="11s">11xx series</option>
-					<option value="22s">22xx series</option>
-					<option value="33s">33xx series</option>
-					<option value="44s">44xx series</option>
-					<option value="55s">55xx series</option>
-					<option value="66s">66xx series</option>
-					<option value="77s">77xx series</option>
-					<option value="88s">88xx series</option>
-					<option value="99s">99xx series</option>
-					<option value="111s">111x series</option>
-					<option value="222s">222x series</option>
-					<option value="333s">333x series</option>
-					<option value="444s">444x series</option>
-					<option value="555s">555x series</option>
-					<option value="666s">666x series</option>
-					<option value="777s">777x series</option>
-					<option value="888s">888x series</option>
-					<option value="999s">999x series</option>
-					<option value="2sq">2s sequence</option>
-					<option value="3sq">3s sequence</option>
-					<option value="4sq">4s sequence</option>
-					<option value="yr">Years</option>
-				</select> 
-			</td>
 		</tr>
 		<tr>
 			<td colspan='3'><input align='center' type="submit" name='submit_data' value="Generate Number"></td>
