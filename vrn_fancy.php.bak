@@ -1,0 +1,501 @@
+<?php
+	$vrn = "";
+	if(isset($_POST['submit_data']))
+	{
+	$States = array("andamanandnicobar"=> 'AN', "andhrapradesh"=> 'AP', "arunachalpradesh"=> 'AR', "assam"=> 'AS',"bihar"=> 'BR', "chandigarh"=> 'CH', "dadraandnagarhaveli"=> 'DN', 
+                  "damananddiu"=> 'DD', "delhi"=> 'DL',"goa"=> 'GA', "gujarat"=> 'GJ', "haryana"=> 'HR', "himachalpradesh"=> 'HP', "jammuandkashmir"=> 'JK',"karnataka"=> 'KA',"kerala"=> 'KL',
+		  "lakshadweep"=> 'LD', "madhyapradesh"=> 'MP', "maharashtra"=> 'MH',"manipur"=> 'MN', "meghalaya"=> 'ML', "mizoram"=> 'MZ', "nagaland"=> 'NL',"orissa"=> 'OR',
+		  "pondicherry"=> 'PY', "punjab"=> 'PN', "rajasthan"=> 'RJ', "sikkim"=> 'SK', "tamilNadu"=> 'TN',"tripura"=> 'TR', "uttarpradesh"=> 'UP', "westbengal"=> 'WB',"uttarakhand"=>'UK');
+	$AN = array("portblair"=>1,"andaman"=>1,"carnicobar"=>2,"nicobar"=>2);
+	$AP = array("adilabad"=> 1, "ananthapur"=> 2, "chittoor"=> 3, "kadapa"=> 4, "eastgodavari"=> array(5, 6), "guntur"=> array(7,8),"hyderabad"=> array(9, 10, 11, 12, 13, 14),
+	      "karimnagar"=> 15, "krishna"=> array(16, 17, 18, 19), "khammam"=> 20,"kurnool"=> 21, "mahaboobnagar"=> 22, "medak"=> 23, "nalgonda"=> 24, "nizamabad"=> 25, "nellore"=> 26,
+	      "prakasam"=> 27, "rangareddy"=> array(28, 29), "srikakulam"=> 30, "visakhapatnam"=> array(31, 32, 33, 34),"vizianagaram"=> 35, "warangal"=> 36, "westgodavari"=> array(37, 38));
+        $AR = array("itanagar"=> array(1,2), "pasighat"=> 9, "anini"=> 10, "tawang"=> 3, "lohit"=> 11, "bomdila"=> 4, "changlang"=> 12,"seppa"=> 5, "khonsa"=> 13, "ziro"=> 6,
+	      "yingkiong"=> 14, "daporijo"=> 7, "kurungkumey"=> 15, "along"=> 8,"roing"=> 16);
+        $AS = array("guwahati"=> 1, "kamrup"=>1, "nagaon"=>2, "jorhat"=> 3, "sibsagar"=> 4, "golaghat"=> 5, "dibrugarh"=> 6,"lakhimpur"=> 7,"dimahasao"=>8,"karbianglong"=>9,"karimganj"=>10,
+	      "cachar"=>11, "sonitpur"=>12, "darrang"=>13, "nalbari"=>14, "barpeta"=>15,"kokrajhar"=>16, "dhubri"=>17, "goalpara"=>18, "bongaigaon"=>19,"assamstatetransportcorporation"=>20,
+	      "astc"=>20,"marigaon"=>21, "dhemaji"=>22, "tinsukia"=>23, "hailakandi"=>24, "kamruprural"=>25,"chirang"=>26,"udalguri"=>27,"baksa"=>28,"assam"=>29,
+	      "assampolicevehicles"=>array(30,31));
+        $BR = array("patna"=> 1,"sitamarhi"=> 30,"gaya"=> 2,"vaishali"=>31,"bhojpur"=>3,"madhubani"=>32,"chapra"=>4,"samastipur"=>33,"motihari"=>5,"khagaria"=>34,"muzaffarpur"=>6,
+	      "kishanganj"=>37,"darbhanga"=>7,"araria"=>38,"munger"=>8,"katihar"=>39,"begusarai"=>9,"madhepura"=>43,"bhagalpur"=>10,"buxar"=>44,"purnea"=>11,"bhabua"=>45,"saharsa"=>19,
+	      "jamui"=>46,"nalanda"=>21,"supaul"=>50,"bettiah"=>22,"banka"=>51,"dehri"=>24,"sheikhpura"=>52,"jehanabad"=>25,"lakhisarai"=>53,"aurangabad"=>26,"sheohar"=> 55, "nawada"=> 27,
+	      "arwal"=> 56,"gopalganj"=> 28, "rohtas"=> 57, "siwan"=> 29);
+        $CH = array("chandigarh"=>array(1,3,4),"commercialvehicles"=>2);
+    	$DN = array("dadraandnagarhaveli"=>9);
+    	$DD = array("diu"=>2,"daman"=>3);
+    	$DL = array("northdelhi"=>1,"newdelhi"=>2,"southdelhi"=>3,"janakpuriwest"=>4,"northeastdelhi"=>5,"centraldelhi"=>6,"eastdelhi"=>7,"northwestdelhi"=>8,"southwestdelhi"=>9,
+	      "westdelhi"=>10,"rohini"=>11,"vasantvihar"=>12,"surajmalvihar"=>13,"sonipat"=>14,"gurgaon"=>15,"faridabad"=>16,"noida"=>17,"ghaziabad"=>18);
+    	$GA = array("panajinorthgoa"=>1,"margao"=>2,"mapusa"=>3,"bicholim"=>4,"ponda"=>5,"vasco"=>6,"panaji"=>7,"margao"=>8,"quepem"=>9,"canacona"=>10,"pernem"=>11,"dharbandora"=>12);
+    	$GJ = array("ahmedabad"=>1,"bardoli"=>19,"dahod"=>20,"mehsana"=>2,"navsari"=>21,"rajkot"=>3,"rajpipla"=>22,"bhavnagar"=>4,"anand"=>23,"surat"=>5,"patan"=>24,"vadodara"=>6,
+	      "porbander"=>25,"nadiad"=>7,"vyara"=>26,"palanpur"=>8,"ahmedabadeast"=>27,"himmatnagar"=>9,"surat"=>28,"pal"=>28,"jamnagar"=>10,"vadodara"=>29,"darjipura"=>29,"junagadh"=>11,
+	      "ahvadang"=>30,"bhuj"=>12,"modasa"=>31,"arvalli"=>31,"surendranagar"=>13,"veraval"=>32,"girsomnath"=>32,"amreli"=>14,"botad"=>33,"valsad"=>15,"chhotaUdepur"=>34,"bharuch"=>16,
+	      "mahisagar"=>35,"lunawada"=>35,"godhra"=>17,"morbi"=>36,"gandhinagar"=>18,"khambhaliya"=>37,"bavla"=>38);
+    	$JK = array("srinagar"=>1,"poonch"=>12,"jammu"=>2,"pulwama"=>13,"anantnag"=>3,"udhampur"=>14,"budgam"=>4,"bandipora"=>15,"baramulla"=>5,"ganderbal"=>16,"doda"=>6,"kishtwar"=>17,
+	      "kargil"=>7,"kulgam"=>18,"kathua"=>8,"ramban"=>19,"kupwara"=>9,"reasi"=>20,"leh"=>10,"samba"=>21,"rajouri"=>11,"shopian"=>22);
+    	$OR = array(" balasore"=>1,"bhubaneswar"=>2,"balangir"=>3," chandikhole"=>4," cuttack"=>5,"dhenkanal"=>6," ganjam"=>7," kalahandi"=>8,"keonjhar"=>9,"koraput"=>10,"mayurbhanj"=>11,
+	      "phulabani"=>12,"puri"=>13,"rourkela"=>14,"sambalpur"=>15,"sundergarh"=>16," baragarh"=>17,"rayagada"=>18,"angul"=>19,"gajapati"=>20,"jagatsinghpur"=>21,"bhadrak"=>22,
+	      "jharsuguda"=>23,"nabarangpur"=>24," nayagarh"=>25,"nuapada"=>26," boudh"=>27,"debagarh"=>28,"kendrapada"=>29," malkangiri"=>30,"sonepur"=>31,"bhanjanagar"=>32,
+	      "bhubaneswar"=>33,"jajpur"=>34,"talcher"=>35);
+        $KL = array("thiruvananthapuram"=>1,"kollam"=>2,"pathanamthitta"=>3,"alappuzha"=>4,"kottayam"=>5,"idukki"=>6,"ernakulam"=>7,"thrissur"=>8,"palakkad"=>9,"malappuram"=>10,
+	      "kozhikode"=>11,"wayanad"=>12,"kannur"=>13,"kasargode"=>14,"kerala"=>15,"attingal"=>16,"muvattupuzha"=>17,"vadakara"=>18,"parassala"=>19,"neyyattinkara"=>20,"nedumangad"=>21,
+	      "kazhakkoottam"=>22,"karunagapally"=>23,"kottarakara"=>24,"punalur"=>25,"adoor"=>26,"thiruvalla"=>27,"mallappally"=>28,"kayamkulam"=>29,"chengannur"=>30,"mavelikara"=>31,
+	      "cherthala"=>32,"changanassery"=>33,"kanjirappally"=>34,"pala"=>35,"vaikom"=>36,"vandiperiyar"=>37,"thodupuzha"=>38,"thripunithura"=>39,"perumbavoor"=>40,"aluva"=>41,
+	      "northparavur"=>42,"mattancherry"=>43,"kothamangalam"=>44,"irinjalakuda"=>45,"guruvayur"=>46,"kodungallur"=>47,"wadakkancherry"=>48,"alathur"=>49,"mannarghat"=>50,
+	      "ottappalam"=>51,"pattambi"=>52,"perinthalmanna"=>53,"ponnani"=>54,"tirur"=>55,"koyilandi"=>56,"koduvally"=>57,"thalassery"=>58,"taliparamba"=>59,"kanhangad"=>60,
+	      "kunnathur"=>61,"ranni"=>62,"angamaly"=>63,"chalakkudy"=>64,"thirurangadi"=>65,"kuttanadu"=>66,"uzhavoor"=>67,"devikulam"=>68,"udumbanchola"=>69);
+        $KA = array("bengalurucentral"=>1,"bengaluruwest"=>2,"bengalurueast"=>3,"bengalurunorth"=>4,"bengalurusouth"=>5,"tumakuru"=>6,"kolar"=>7,"kgf"=>8,"mysuruwest"=>9,
+	      "chamarajanagar"=>10,"mandya"=>11,"madikeri"=>12,"hassan"=>13,"sagar"=>14,"chitradurga"=>15,"shivamogga"=>16,"davanagere"=>17,"chikkamagaluru"=>18,"mangaluru"=>19,"udupi"=>20,
+	      "puttur"=>21,"belagavi"=>22,"chikkodi"=>23,"bailahongal"=>24,"dharwad"=>25,"gadag"=>26,"haveri"=>27,"vijayapura"=>28,"bagalkote"=>29,"karwar"=>30,"sirsi"=>31,"kalaburgi"=>32,
+	      "yadagiri"=>33,"bellari"=>34,"hosapete"=>35,"raichur"=>36,"koppal"=>37,"bidar"=>38,"bhalki"=>39,"chickballapura"=>40,"jnanabharathi"=>41,"ramanagar"=>42,"devanahalli"=>43,
+	      "tiptur"=>44,"hunsur"=>45,"sakaleshpura"=>46,"honnavar"=>47,"jamkhandi"=>48,"gokak"=>49,"yelahanka"=>50,"electroniccity"=>51,"nelamangala"=>52,"krishnarajapuram"=>53,
+	      "nagamangala"=>54,"mysurseast"=>55,"basavakalyana"=>56,"arstu"=>57,"banashankari"=>58,"chandapura"=>59,"rtnagar"=>60,"marathalli"=>61,"surathkal"=>62,"dakshinakannada"=>62,
+	      "dharwdeast"=>63,"madhugiri"=>64,"tumakuru"=>64,"dandeliuttara"=>65,"kannada"=>65,"tarikerechikkamagaluru"=>66,"chintamani"=>67,"chikkaballapur"=>67,"ranibennurhaveri"=>68,
+	      "ramadurgabelagavi"=>69,"bantwaladakshinakannada"=>70);
+        $HR = array("ambala"=>array(1,37,85),"yamunanagar"=>2,"panchkula"=>array(3,68),"naraingarh"=>4,"karnal"=>5,"panipat"=>array(6,67),"kurukshetra"=>array(7,65),"kaithal"=>8,"guhla"=>9,
+	      "sonepat"=>array(10,69),"gohana"=>11,"rohtak"=>12,"bahadurgarh"=>13,"jhajjar"=>14,"meham"=>15,"bhiwani"=>16,"siwani"=>16,"loharu"=>18,"charkhidadri"=>array(19,84),
+	      "hisar"=>array(20,39),"hansi"=>21,"fatehabad"=>22,"tohana"=>23,"sirsa"=>24,"dabwali"=>25,"gurgaon"=>26,"nuh"=>27,"ferozpurjhirka"=>28,"ballabgarh"=>29,"palwal"=>array(30,73),
+	      "jind"=>31,"narwana"=>32,"safidon"=>33,"mohindegarh"=>34,"narnaul"=>array(35,66,86),"rewari"=>36,"faridabad"=>38,"assandh"=>40,"pehowa"=>41,"ganaur"=>42,"kosli"=>43,
+	      "ellenabad"=>44,"chandigarh"=>70,"bilsapur"=>71,"gurgaonsouth"=>72,"mewat"=>74,"indri"=>75,"pataudi"=>76,"beri"=>77,"sahabad"=>78,"kharkoda"=>79,"barwala"=>80,"bawal"=>81,
+	      "kanina"=>82,"kalayat"=>83,"badkhal"=>87,"badhra"=>88,"uchana"=>90,"gharaunda"=>91,"radaur"=>92,"punhana"=>93,"kalanwali"=>94,"sampla"=>95);
+        $HP = array("bilasput"=>array(24,69),"ghumarwin"=>23,"jhandutta"=>89,"nainadevijiatswarghat"=>91,"bharmaur"=>46,"chowari"=>57,"churah"=>44,"chamba"=>array(48,73),"dalhousie"=>47,
+	      "pangi"=>45,"salooni"=>81,"barsar"=>21,"bhoranj"=>74,"hamirpur"=>array(22,67),"nadaun"=>55,"sujanpur"=>84,"bajinath"=>53,"dharamshala"=>39,"dehara"=>36,"jawali"=>array(54,83),
+	      "jaisinghpur"=>56,"kangra"=>40,"nurpur"=>38,"palampur"=>37,"fatehpur"=>88,"shahpur"=>90,"nagrotabagwan"=>94,"kangra"=>68,"dheera"=>96,"indora"=>97,"nichar"=>26,"kalpa"=>25,
+	      "pooh"=>27,"anni"=>35,"banjar"=>49,"kullu"=>array(34,66),"manali"=>58,"keylong"=>42,"kaza"=>41,"udaipur"=>43,"gohar"=>32,"jogindernagar"=>29,"karsog"=>30,"mandisadar"=>33,
+	      "padhar"=>76,"sarkaghat"=>28,"sundernagar"=>31,"dharampur"=>86,"balh"=>82,"thunag"=>87,"mandi"=>65,"chopal"=>8,"dodrakawar"=>77,"rampur"=>6,"rohru"=>10,"shimlaurban"=>3,
+	      "shimlarural"=>51,"theog"=>9,"kumarsain"=>95,"shimla"=>array(63,62),"rampur"=>92,"nahan"=>18,"paontasahib"=>17,"rajgarh"=>16,"sangarh"=>79,"shillai"=>85,"sirmaur"=>71,
+	      "pachhad"=>16,"arki"=>11,"kandaghat"=>13,"nalagarh"=>array(12,93),"solan"=>array(14,64),"parwano"=>15,"amb"=>19,"una"=>array(20,72),"bangana"=>78,"haroli"=>80,"garget"=>19);
+        $JH = array("ranchi"=>1,"hazaribagh"=>2,"daltonganj"=>3,"dumka"=>4,"jamshedpur"=>5,"chaibasa"=>6,"gumla"=>7,"lohardaga"=>8,"bokarosteelcity"=>9,"dhanbad"=>10,"giridih"=>11,
+	      "koderma"=>12,"chatra"=>13,"garhwa"=>14,"deoghar"=>15,"pakur"=>16,"godda"=>17,"sahibganj"=>18,"latehar"=>19,"simdega"=>20,"jamtara"=>21,"saraikelakharsawan"=>22,"khunti"=>23,
+	      "ramgarh"=>24);
+        $PY = array("puducherry"=>1,"karaikal"=>2,"mahe"=>3,"yanam"=>4,"oulgaret"=>5);
+        $LD = array("kavaratti"=>1,"agatti"=>2,"amini"=>3,"androth"=>4,"kadmat"=>5,"kiltan"=>6,"chetlat"=>7,"kalpeni"=>8,"minicoy"=>9);
+        $MN = array("imphaleast"=>1,"churachandpur"=>2,"kangpokpi"=>3,"thoubal"=>4,"bishnupur"=>5,"imphalwest"=>6,"ukhrul"=>7);
+    	$ML = array("meghalaya"=>array(1,2,3),"jaintiahills"=>4,"shillong"=>5,"westkhasihills"=>6,"eastgarohills"=>7,"westgarohills"=>8,"southgarohills"=>9,"ribhoi"=>10);
+        $MZ = array("aizawl"=>1,"lunglei"=>2,"saiha"=>3,"champhai"=>4,"kolasib"=>5,"serchhip"=>6,"lawngtlai"=>7,"mamit"=>8);
+        $UK = array("almora"=>1,"bageshwar"=>2,"champawat"=>3,"nainital"=>4,"pithoragarh"=>5,"udhamsinghnagar"=>6,"dehradun"=>7,"haridwar"=>8,"tehri"=>9,"uttarkashi"=>10,"chamoli"=>11,
+	      "pauri"=>12,"rudraprayag"=>13,"rishikesh"=>14,"kotdwar"=>15,"vikasnagar"=>16,"roorkee"=>17,"kashipur"=>18,"ramnagar"=>19,"ranikhet"=>20);
+    	$TR = array("agartala"=>1,"kailashahar"=>2,"udaipura"=>3,"dharmanagar"=>4,"ambassa"=>5);
+
+
+
+
+	$number_type= $_POST['number_type'];
+	#echo "Number Type: $number_type";
+	$fancy_num_type = $_POST['discountselection'];
+	#echo "Fancy number type: $fancy_num_type";
+	#$a = "andhra pradesh";
+	$a = $_POST['state_name'];
+	$s = strtolower($a);
+	$state_replace = str_replace(' ', '', $s);
+	$state_name = $States[$state_replace];  	#AP
+	#echo "State name: $state_name\n";
+	#$b = "eastgodavari";
+	$b = $_POST['district_name'];
+	$district_lower = strtolower($b);
+	$dist_replace= str_replace(' ', '', $district_lower);
+	$dist_name = $$state_name[$dist_replace];
+	#echo "District name: $dist_name";
+	
+	if (is_array($dist_name))
+	{
+		$arr_count = count($dist_name);
+		#echo "Array count: $arr_count\n";
+		$random_int = rand(0, $arr_count-1);
+		#echo "Random number: $random_int\n";
+		$dist_name = $dist_name[$random_int];
+		if (strlen($dist_name) == 1)
+		{
+			$dist_name = "0".$dist_name;
+		}
+		#echo "Disctrict code: $dist_name\n";
+	}
+	else
+	{
+		if (strlen($dist_name) == 1)
+		{
+			$dist_name = "0".$dist_name;
+		}
+		#echo "Distric name: $dist_name\n";
+	}
+	$random_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$vehicle_str = '';
+	for($i=0; $i< 2; $i++)
+	{
+		$vehicle_str .= $random_chars[rand(0, 25)];
+	}
+	#echo "Random string: $vehicle_str\n";
+	
+	function general_number()
+	{
+		$random_vehicle_number = rand(0, 9999);
+		if ($random_vehicle_number < 1000 || $random_vehicle_number < 100 || $random_vehicle_number < 10)
+		{
+			if (strlen($random_vehicle_number) == 3)
+			{
+				$random_vehicle_number = "0".$random_vehicle_number;
+			}	
+			if (strlen($random_vehicle_number) == 2)
+			{
+				$random_vehicle_number = "00".$random_vehicle_number;
+			}
+			if (strlen($random_vehicle_number) == 1)
+			{
+				$random_vehicle_number = "000".$random_vehicle_number;
+			}
+		}
+		return $random_vehicle_number;
+	}
+	
+	function years_series($fancy_num_type)
+	{
+		#To generate 1xxx series, 11xx series, 111x series numbers
+		if ($fancy_num_type == '1s' || $fancy_num_type == '2s' || $fancy_num_type == '3s' || $fancy_num_type == '4s' || $fancy_num_type == '5s' || $fancy_num_type == '6s' || $fancy_num_type == '7s' || $fancy_num_type == '8s' || $fancy_num_type == '9s' || $fancy_num_type == '11s' || $fancy_num_type == '22s' || $fancy_num_type == '33s' || $fancy_num_type == '44s' || $fancy_num_type == '55s' || $fancy_num_type == '66s' || $fancy_num_type == '77s' || $fancy_num_type == '88s' || $fancy_num_type == '99s' || $fancy_num_type == '111s' || $fancy_num_type == '222s' || $fancy_num_type == '333s' || $fancy_num_type == '444s' || $fancy_num_type == '555s' || $fancy_num_type == '666s' || $fancy_num_type == '777s' || $fancy_num_type == '888s' || $fancy_num_type == '999s')
+		{
+			$nmbr_str = str_split($fancy_num_type);
+			if (strlen($fancy_num_type) == 2)
+			{
+				$yr_series = $nmbr_str[0] . $nmbr_str[0] . $nmbr_str[0] . $nmbr_str[0];
+				return $yr_series;
+			}
+			elseif(strlen($fancy_num_type) == 3)
+			{
+				$last_nmbr = rand(10, 99);
+				$yr_series = $nmbr_str[0] . $nmbr_str[1] . $last_nmbr;
+				return $yr_series;
+			}
+			elseif(strlen($fancy_num_type) == 4)
+			{
+				$last_nmbr = rand(0, 9);
+				$yr_series = $nmbr_str[0] . $nmbr_str[1] . $nmbr_str[2] . $last_nmbr;
+				return $yr_series;
+			}
+		}
+		
+		#To generate year series numbers
+		if ($fancy_num_type == "yr")
+		{	
+			$yr_series = rand(1900, 2099);
+			return $yr_series;
+		}	
+		
+		#To generate 2 sequence series numbers. Ex: 12, 56, 89, 01, 45 etc
+		if ($fancy_num_type == "2sq")
+		{
+			$two_sq_series = rand(0,8);
+			$second_nmbr = $two_sq_series + 1;
+			$next_nmbr = rand(10, 99);
+			$yr_series = $two_sq_series . $second_nmbr . $next_nmbr;
+			return $yr_series;
+		}	
+		
+		#To generate 3 sequence series numbers. Ex: 123, 567, 890, 012, 456 etc
+		if ($fancy_num_type == "3sq")
+		{
+			$two_sq_series = rand(0,8);
+			$second_nmbr = $two_sq_series + 1;
+			$third_nmbr = $second_nmbr + 1;
+			$len_check = $two_sq_series . $second_nmbr . $third_nmbr;
+			if (strlen($len_check) <4)
+			{
+				$next_nmbr = rand(0, 9);
+				$yr_series = $two_sq_series . $second_nmbr . $third_nmbr . $next_nmbr;
+				return $yr_series;
+			}
+			else
+			{
+				$yr_series = $two_sq_series . $second_nmbr . $third_nmbr;
+				return $yr_series;
+			}
+		}	
+		
+		#To generate 4 sequence series numbers. Ex: 1234, 5678, 8901, 0123, 4567 etc
+		if ($fancy_num_type == "4sq")
+		{
+			$two_sq_series = rand(0,8);
+			$second_nmbr = $two_sq_series + 1;
+			$third_nmbr = $second_nmbr + 1;
+			$len_check = $two_sq_series . $second_nmbr . $third_nmbr;
+			if ($third_nmbr == 9)
+			{
+				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr . 0;
+				return $yr_series;
+			}
+			if (strlen($len_check) <4)
+			{
+				$fourth_nmbr = $third_nmbr + 1;
+				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr . $fourth_nmbr;
+				return $yr_series;
+			}
+			else
+			{
+				$yr_series = $two_sq_series . $second_nmbr. $third_nmbr;
+				return $yr_series;
+			}
+		}	
+		else
+		{
+			# Return null if no condition matches
+			$yr_series = "NULL";
+			return $yr_series;
+		}
+	}	
+	function vrn_status_check($vrn_data)
+	{
+		$conn = mysqli_connect("localhost", "root", "", "numbers");        
+		// Check connection
+		if($conn === false){
+			die("ERROR: Could not connect. " . mysqli_connect_error());
+		}
+		$status_check = mysqli_query($conn,"SELECT COUNT(*) FROM vrn_data WHERE vehicle_number=$vrn_data");
+		$count = mysqli_num_rows($status_check);
+		return $count;
+	}
+	
+	#Calling general type function based on user selection
+	if ($number_type == 'general')
+	{
+		$vrn_number = general_number();
+		$nmbr_sts_check = vrn_status_check($vrn_number);
+		echo "$nmbr_sts_check";	
+	}
+	
+	#Calling fancy type function based on user selection
+	if ($number_type == 'fancy')
+	{
+		$vrn_number = years_series($fancy_num_type);
+	}
+	
+	$vrn = $state_name ." ". $dist_name ." ". $vehicle_str ." ". $vrn_number;
+	}
+?>
+
+<html>	
+	<head>
+		<title>Vehicle Registration Number</title>
+		<style>
+		body 
+			{
+				
+  				background-color:rgb(251,165,171);
+				/* background-color: #3B9C9C; */
+			}
+			
+		table {
+			border-collapse: collapse;
+			width: 45%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		th, td {
+			padding: 8px;
+			text-align: center;
+			border-bottom: 1px solid #DDD;
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		tr:hover {
+			/*background-color: #D6EEEE; */
+			background-color: #99C68E;
+		}
+		/* select { 
+			text-indent: 20px; 
+		} */
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			var unitLists = new Array(2) 
+			unitLists["0"] = ["Select District"]; 			
+			unitLists["Andaman and Nicobar"]  = ["Portblair","Andaman","Carnicobar","Nicobar"];
+			unitLists["Andhra Pradesh"] = ["Adilabad","Ananthapur","Chittoor","Kadapa","East godavari","Guntur","Hyderabad","Karimnagar","Krishna","Khammam","Kurnool","Mahaboobnagar","Medak","Nalgonda", "Nizamabad","Nellore", "Prakasam","Rangareddy","Srikakulam","Visakhapatnam","Vizianagaram", "Warangal","West godavari"];
+			unitLists["Arunachal Pradesh"] = ["Itanagar","Pasighat","Anini", "Tawang","Lohit","Bomdila","Chang lang","Seppa","Khonsa","Ziro","Ying Kiong", "Daporijo", "Kurungkumey","Along","Roing"];
+    unitLists["Assam"] = ["Guwahati","Kamrup", "Nagaon", "Jorhat","Sibsagar","Golaghat","Dibrugarh","Kakhimpur","Dimahasao", "Karbianglong", "Karimganj", "Cachar","Sonitpur","Darrang","Nalbari",
+	        "Barpeta","Kokrajhar", "Dhubri", "Goalpara", "Bongaigaon","Assam State Transport Corporation","ASTC","Marigaon","Dhemaji","Tinsukia", "Hailakandi","Kamruprural","Chirang",
+		"Udalguri","Baksa","Assam","Assam Police Vehicles"];
+    unitLists["Bihar"] = ["Patna","Sitamarhi","Gaya","Vaishali","Bhojpur","Madhubani","Chapra","Samastipur","Motihari","Khagaria","Muzaffarpur","Kishanganj","Darbhanga","Araria","Munger","Katihar",
+		"Begusarai","Madhepura","Bhagalpur","Buxar","Purnea","Bhabua","Saharsa","Jamui","Nalanda","Supaul","Bettiah","Anka","Dehri","Sheikhpura","Jehanabad","Lakhisarai",
+		"Aurangabad","Sheohar","Nawada","Arwal","Gopalganj","Rohtas","Siwan"];
+    unitLists["Chandigarh"] = ["chandigarh","commercialvehicles"];
+    unitLists["Dadra and Nagar Haveli"] = ["dadraandnagarhaveli"];
+    unitLists["Daman and Diu"] = ["diu","daman"];
+    unitLists["Delhi"] = ["northdelhi","newdelhi","southdelhi","janakpuriwest","northeastdelhi","centraldelhi","eastdelhi","northwestdelhi","southwestdelhi","westdelhi","rohini","vasantvihar",
+		"surajmalvihar","sonipat","gurgaon","faridabad","noida","ghaziabad"];
+    unitLists["Goa"] =["panajinorth","margao","mapusa","bicholim","ponda","vasco"=,"panaji","margao","quepem","canacona","pernem","dharbandora"];
+    unitLists["Gujarat"] = ["ahmedabad","bardoli","dahod","mehsana","navsari","rajkot","rajpipla","bhavnagar","anand","surat","patan","vadodara","porbander","nadiad","vyara","palanpur",
+		  "ahmedabadeast","himmatnagar","surat","pal","jamnagar","vadodara","darjipura","junagadh","ahvadang","bhuj","modasa","arvalli","surendranagar","veraval","girsomnath",
+		  "amreli","botad","valsad","chhotaUdepur","bharuch","mahisagar","lunawada","godhra","morbi","gandhinagar","khambhaliya","bavla"];
+    unitLists["Jammu and Kashmir"] = ["srinagar","poonch","jammu","pulwama","anantnag","udhampur","budgam","bandipora","baramulla","ganderbal","doda","kishtwar","kargil","kulgam","kathua","ramban",
+	                    "kupwara","reasi","leh","samba","rajouri","shopian"];
+    unitLists["Odisa"]=[" balasore","bhubaneswar","balangir","chandikhole","cuttack","dhenkanal"," ganjam"," kalahandi","keonjhar","koraput","mayurbhanj","phulabani","puri","rourkela","sambalpur",
+	      "sundergarh"," baragarh","rayagada","angul","gajapati","jagatsinghpur","bhadrak","jharsuguda","nabarangpur"," nayagarh","nuapada","boudh","debagarh","kendrapada",
+	      " malkangiri","sonepur","bhanjanagar","bhubaneswar-II","jajpur","talcher"];
+    unitLists["Kerala"]=["thiruvananthapuram","kollam","pathanamthitta","alappuzha","kottayam","idukki","ernakulam","thrissur","palakkad","malappuram","kozhikode","wayanad","kannur","kasargode",
+		"kerala","attingal","muvattupuzha","vadakara","parassala","neyyattinkara","nedumangad","kazhakkoottam","karunagapally","kottarakara","punalur","adoor","thiruvalla",
+	        "mallappally","kayamkulam","chengannur","mavelikara","cherthala","changanassery","kanjirappally","pala","vaikom","vandiperiyar","thodupuzha","thripunithura","perumbavoor",
+		"aluva","northparavur","mattancherry","kothamangalam","irinjalakuda","guruvayur","kodungallur","wadakkancherry","alathur","mannarghat","ottappalam","pattambi",
+		"perinthalmanna","ponnani","tirur","koyilandi","koduvally","thalassery","taliparamba","kanhangad","kunnathur","ranni","Angamaly","Chalakkudy","Thirurangadi","kuttanadu",
+                "uzhavoor""devikulam","udumbanchola"];
+    unitLists["Karnataka"]=["bengalurucentral","bengaluruwest","bengalurueast","bengalurunorth","bengalurusouth","tumakuru","kolar","kgf","mysuruwest","chamarajanagar","mandya","madikeri","hassan",
+                  "sagar","chitradurga","shivamogga","davanagere",chikkamagaluru","mangaluru","udupi","puttur","belagavi","chikkodi","bailahongal","dharwad","gadag","haveri","vijayapura",
+                  "bagalkote","karwar","sirsi","kalaburgi","yadagiri","bellari","hosapete","raichur","koppal","bidar","bhalki","chickballapura","jnanabharathi","ramanagar","devanahalli",
+                  "tiptur","hunsur","sakaleshpura","honnavar","jamkhandi","gokak","yelahanka","electroniccity","nelamangala","krishnarajapuram","nagamangala","mysurseast","basavakalyana",
+                  "arstur","banashankari","chandapura","rtnagar","marathalli","surathkal","dakshinakannada","dh	arwdeast","madhugiri","tumakuru","dandeliuttara","kannada",
+                  "tarikerechikkamagaluru","chintamani","chikkaballapur","ranibennurhaveri","ramadurgabelagavi","bantwaladakshinakannada"];
+    unitLists["Haryana"]=["ambala","yamunanagar","panchkula","naraingarh","karnal","panipat","kurukshetra","kaithal","guhla","sonepat","gohana","rohtak","bahadurgarh","jhajjar","meham","bhiwani",
+                "siwani","loharu""charkhidadri","hisar","hansi","fatehabad","tohana","sirsa","dabwali","gurgaon","nuh","ferozpurjhirka","ballabgarh","palwal","jind","narwana","safidon",
+                "mohindegarh","narnaul"=>,"rewari","faridabad","assandh","pehowa","ganaur","kosli","ellenabad","chandigarh","bilsapur","gurgaonsouth","mewat","indri","pataudi","beri",
+                "sahabad","kharkoda","barwala","bawal","kanina","kalayat","badkhal","badhra","uchana","gharaunda","radaur","punhana","kalanwali","sampla"];
+    unitLists["Himachal Pradesh"]=["bilasput,"ghumarwin","jhandutta","nainadevijiatswarghat","bharmaur","chowari","churah","chamba","dalhousie","pangi","salooni","barsar","bhoranj","hamirpur",
+                         "nadaun","sujanpur","bajinath","dharamshala","dehara","jawali","jaisinghpur","kangra","nurpur","palampur","fatehpur","shahpur","nagrotabagwan","kangra","dheera",
+                         "indora","nichar","kalpa","pooh","anni","banjar","kullu","manali","keylong","kaza","udaipur","gohar","jogindernagar","karsog","mandisadar","padhar","sarkaghat",
+                         "sundernagar","dharampur","balh","thunag","mandi","chopal","dodrakawar","rampur","rohru","shimlaurban","shimlarural","theog","kumarsain","shimla","rampur","nahan",
+                         "paontasahib","rajgarh","sangarh","shillai","sirmaur","pachhad","arki","kandaghat","nalagarh","solan","parwano","amb","una","bangana","haroli","garget"];
+    unitLists["Jharkhand"]=["ranchi","hazaribagh","daltonganj","dumka","jamshedpur","chaibasa","gumla","lohardaga","bokarosteelcity","dhanbad","giridih","koderma","chatra","garhwa","deoghar",
+                  "pakur","godda","sahibganj","latehar","simdega","jamtara","saraikelakharsawan","khunti","ramgarh"];	
+
+
+
+ 
+ 
+ /* unitMenuChange() is called from the onchange event of a select element. 
+ * param selectObj - the select object which fired the on change event. 
+ */
+			function unitMenuChange(selectObj) 
+			{ 
+    				var idx = selectObj.selectedIndex;
+    				var which = selectObj.options[idx].value;
+    				uList = unitLists[which];
+    				var uc_selector = document.getElementById("uc_selector");
+ 
+   			 	while (uc_selector.options.length > 0) 
+				{ 
+        				uc_selector.remove(0); 
+    				}
+    				var newOption;
+    // create and add new options 
+    				for (var i=0; i<uList.length; i++) 
+				{
+        				newOption = document.createElement("option"); 
+        				newOption.value = uList[i];  
+        				newOption.text=uList[i];
+        				try 
+					{ 
+            					uc_selector.add(newOption); 
+            				} 
+        				catch (e) 
+					{ 
+            					uc_selector.appendChild(newOption);
+            				} 
+    				}
+ 			}
+			</script>
+			<script>
+				$(document).ready(function(){     
+				
+				$('#discountselection').hide();
+				
+						$('#general').click(function(){
+							$('#discountselection').hide();
+						});
+				
+						$('#fancy').click(function(){
+							$('#discountselection').show();
+						});
+				});
+			</script>
+	</head>
+	<body>
+		<br>
+		<h2 align='center' style="color:black"> Vehicle Registration Number -Automated Number Generation</h2>
+		<br>
+		<form action="" method='POST'>
+		<table>
+		<tr style="background-color:#4CC417">
+			<th>State</th>
+			<th>District</th>
+			<th>Number type</th>
+		</tr>
+		<tr>
+    		<td><select name='state_name' style="width:150px;"  id="uc_selector_main" onchange="unitMenuChange(this);">
+					<option value="0">Select State</option>
+					<option value="Andaman and Nicobar">Andaman and Nicobar</option>
+					<option value="Andhra Pradesh">Andhra Pradesh</option>
+					<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+					<option value="Assam">Assam</option>
+					<option value="Bihar">Bihar</option>
+					<option value="Chandigarh">Chandigarh</option>
+					<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+					<option value="Daman and Diu">Daman and Diu</option>
+					<option value="Delhi">Delhi</option>
+					<option value="Goa">Goa</option>					
+					<option value="Gujarat">Gujarat</option> 
+					<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+					<option value="Odisa">Odisa</option>
+					<option value="Kerala">Kerala</option>
+					<option value="Karnataka">Karnataka</option>
+					<option value="Haryana">Haryana</option>
+					<option value="Himachal Pradesh">Himachal Pradesh</option>
+					<option value="Jharkhand">Jharkhand</option>
+				</select>
+			</td>
+    		<td><select name='district_name' style="width:150px;" id="uc_selector">
+    		<option value="0">Select District</option>
+    		</select></td>
+			<td>
+				<input type='radio' id='general' name='number_type' value='general' checked>
+				<label for='general'>General</label>
+				<input type='radio' id='fancy' name='number_type' value='fancy'>
+				<label for='fancy'>Fancy</label>
+				<select name="discountselection" id="discountselection" style="max-width:100%;">
+					<option value="" selected="selected">Select</option>
+					<option value="1s">All 1s</option>
+					<option value="2s">All 2s</option>
+					<option value="3s">All 3s</option>
+					<option value="4s">All 4s</option>
+					<option value="5s">All 5s</option>
+					<option value="6s">All 6s</option>
+					<option value="7s">All 7s</option>
+					<option value="8s">All 8s</option>
+					<option value="9s">All 9s</option>
+					<option value="11s">11xx series</option>
+					<option value="22s">22xx series</option>
+					<option value="33s">33xx series</option>
+					<option value="44s">44xx series</option>
+					<option value="55s">55xx series</option>
+					<option value="66s">66xx series</option>
+					<option value="77s">77xx series</option>
+					<option value="88s">88xx series</option>
+					<option value="99s">99xx series</option>
+					<option value="111s">111x series</option>
+					<option value="222s">222x series</option>
+					<option value="333s">333x series</option>
+					<option value="444s">444x series</option>
+					<option value="555s">555x series</option>
+					<option value="666s">666x series</option>
+					<option value="777s">777x series</option>
+					<option value="888s">888x series</option>
+					<option value="999s">999x series</option>
+					<option value="2sq">2s sequence</option>
+					<option value="3sq">3s sequence</option>
+					<option value="4sq">4s sequence</option>
+					<option value="yr">Years</option>
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td colspan='3'><input align='center' type="submit" name='submit_data' value="Generate Number"></td>
+		</tr>
+		</table>
+		<br>
+		<p style="text-align:center">
+		<?php 
+			if ($vrn != "")
+			{
+				echo "Vehicle Number is: $vrn\n";
+			}
+		?>
+		</p>
+		</form>
+	</body>
+</html>
