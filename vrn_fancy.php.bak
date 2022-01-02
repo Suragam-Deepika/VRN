@@ -310,53 +310,21 @@
 			unitLists["Andaman and Nicobar"]  = ["Portblair","Andaman","Carnicobar","Nicobar"];
 			unitLists["Andhra Pradesh"] = ["Adilabad","Ananthapur","Chittoor","Kadapa","East godavari","Guntur","Hyderabad","Karimnagar","Krishna","Khammam","Kurnool","Mahaboobnagar","Medak","Nalgonda", "Nizamabad","Nellore", "Prakasam","Rangareddy","Srikakulam","Visakhapatnam","Vizianagaram", "Warangal","West godavari"];
 			unitLists["Arunachal Pradesh"] = ["Itanagar","Pasighat","Anini", "Tawang","Lohit","Bomdila","Chang lang","Seppa","Khonsa","Ziro","Ying Kiong", "Daporijo", "Kurungkumey","Along","Roing"];
-    unitLists["Assam"] = ["Guwahati","Kamrup", "Nagaon", "Jorhat","Sibsagar","Golaghat","Dibrugarh","Kakhimpur","Dimahasao", "Karbianglong", "Karimganj", "Cachar","Sonitpur","Darrang","Nalbari",
-	        "Barpeta","Kokrajhar", "Dhubri", "Goalpara", "Bongaigaon","Assam State Transport Corporation","ASTC","Marigaon","Dhemaji","Tinsukia", "Hailakandi","Kamruprural","Chirang",
-		"Udalguri","Baksa","Assam","Assam Police Vehicles"];
-    unitLists["Bihar"] = ["Patna","Sitamarhi","Gaya","Vaishali","Bhojpur","Madhubani","Chapra","Samastipur","Motihari","Khagaria","Muzaffarpur","Kishanganj","Darbhanga","Araria","Munger","Katihar",
-		"Begusarai","Madhepura","Bhagalpur","Buxar","Purnea","Bhabua","Saharsa","Jamui","Nalanda","Supaul","Bettiah","Anka","Dehri","Sheikhpura","Jehanabad","Lakhisarai",
-		"Aurangabad","Sheohar","Nawada","Arwal","Gopalganj","Rohtas","Siwan"];
-    unitLists["Chandigarh"] = ["chandigarh","commercialvehicles"];
-    unitLists["Dadra and Nagar Haveli"] = ["dadraandnagarhaveli"];
-    unitLists["Daman and Diu"] = ["diu","daman"];
-    unitLists["Delhi"] = ["northdelhi","newdelhi","southdelhi","janakpuriwest","northeastdelhi","centraldelhi","eastdelhi","northwestdelhi","southwestdelhi","westdelhi","rohini","vasantvihar",
-		"surajmalvihar","sonipat","gurgaon","faridabad","noida","ghaziabad"];
-    unitLists["Goa"] =["panajinorth","margao","mapusa","bicholim","ponda","vasco"=,"panaji","margao","quepem","canacona","pernem","dharbandora"];
-    unitLists["Gujarat"] = ["ahmedabad","bardoli","dahod","mehsana","navsari","rajkot","rajpipla","bhavnagar","anand","surat","patan","vadodara","porbander","nadiad","vyara","palanpur",
-		  "ahmedabadeast","himmatnagar","surat","pal","jamnagar","vadodara","darjipura","junagadh","ahvadang","bhuj","modasa","arvalli","surendranagar","veraval","girsomnath",
-		  "amreli","botad","valsad","chhotaUdepur","bharuch","mahisagar","lunawada","godhra","morbi","gandhinagar","khambhaliya","bavla"];
-    unitLists["Jammu and Kashmir"] = ["srinagar","poonch","jammu","pulwama","anantnag","udhampur","budgam","bandipora","baramulla","ganderbal","doda","kishtwar","kargil","kulgam","kathua","ramban",
-	                    "kupwara","reasi","leh","samba","rajouri","shopian"];
-    unitLists["Odisa"]=[" balasore","bhubaneswar","balangir","chandikhole","cuttack","dhenkanal"," ganjam"," kalahandi","keonjhar","koraput","mayurbhanj","phulabani","puri","rourkela","sambalpur",
-	      "sundergarh"," baragarh","rayagada","angul","gajapati","jagatsinghpur","bhadrak","jharsuguda","nabarangpur"," nayagarh","nuapada","boudh","debagarh","kendrapada",
-	      " malkangiri","sonepur","bhanjanagar","bhubaneswar-II","jajpur","talcher"];
-    unitLists["Kerala"]=["thiruvananthapuram","kollam","pathanamthitta","alappuzha","kottayam","idukki","ernakulam","thrissur","palakkad","malappuram","kozhikode","wayanad","kannur","kasargode",
-		"kerala","attingal","muvattupuzha","vadakara","parassala","neyyattinkara","nedumangad","kazhakkoottam","karunagapally","kottarakara","punalur","adoor","thiruvalla",
-	        "mallappally","kayamkulam","chengannur","mavelikara","cherthala","changanassery","kanjirappally","pala","vaikom","vandiperiyar","thodupuzha","thripunithura","perumbavoor",
-		"aluva","northparavur","mattancherry","kothamangalam","irinjalakuda","guruvayur","kodungallur","wadakkancherry","alathur","mannarghat","ottappalam","pattambi",
-		"perinthalmanna","ponnani","tirur","koyilandi","koduvally","thalassery","taliparamba","kanhangad","kunnathur","ranni","Angamaly","Chalakkudy","Thirurangadi","kuttanadu",
-                "uzhavoor""devikulam","udumbanchola"];
-    unitLists["Karnataka"]=["bengalurucentral","bengaluruwest","bengalurueast","bengalurunorth","bengalurusouth","tumakuru","kolar","kgf","mysuruwest","chamarajanagar","mandya","madikeri","hassan",
-                  "sagar","chitradurga","shivamogga","davanagere",chikkamagaluru","mangaluru","udupi","puttur","belagavi","chikkodi","bailahongal","dharwad","gadag","haveri","vijayapura",
-                  "bagalkote","karwar","sirsi","kalaburgi","yadagiri","bellari","hosapete","raichur","koppal","bidar","bhalki","chickballapura","jnanabharathi","ramanagar","devanahalli",
-                  "tiptur","hunsur","sakaleshpura","honnavar","jamkhandi","gokak","yelahanka","electroniccity","nelamangala","krishnarajapuram","nagamangala","mysurseast","basavakalyana",
-                  "arstur","banashankari","chandapura","rtnagar","marathalli","surathkal","dakshinakannada","dh	arwdeast","madhugiri","tumakuru","dandeliuttara","kannada",
-                  "tarikerechikkamagaluru","chintamani","chikkaballapur","ranibennurhaveri","ramadurgabelagavi","bantwaladakshinakannada"];
-    unitLists["Haryana"]=["ambala","yamunanagar","panchkula","naraingarh","karnal","panipat","kurukshetra","kaithal","guhla","sonepat","gohana","rohtak","bahadurgarh","jhajjar","meham","bhiwani",
-                "siwani","loharu""charkhidadri","hisar","hansi","fatehabad","tohana","sirsa","dabwali","gurgaon","nuh","ferozpurjhirka","ballabgarh","palwal","jind","narwana","safidon",
-                "mohindegarh","narnaul"=>,"rewari","faridabad","assandh","pehowa","ganaur","kosli","ellenabad","chandigarh","bilsapur","gurgaonsouth","mewat","indri","pataudi","beri",
-                "sahabad","kharkoda","barwala","bawal","kanina","kalayat","badkhal","badhra","uchana","gharaunda","radaur","punhana","kalanwali","sampla"];
-    unitLists["Himachal Pradesh"]=["bilasput,"ghumarwin","jhandutta","nainadevijiatswarghat","bharmaur","chowari","churah","chamba","dalhousie","pangi","salooni","barsar","bhoranj","hamirpur",
-                         "nadaun","sujanpur","bajinath","dharamshala","dehara","jawali","jaisinghpur","kangra","nurpur","palampur","fatehpur","shahpur","nagrotabagwan","kangra","dheera",
-                         "indora","nichar","kalpa","pooh","anni","banjar","kullu","manali","keylong","kaza","udaipur","gohar","jogindernagar","karsog","mandisadar","padhar","sarkaghat",
-                         "sundernagar","dharampur","balh","thunag","mandi","chopal","dodrakawar","rampur","rohru","shimlaurban","shimlarural","theog","kumarsain","shimla","rampur","nahan",
-                         "paontasahib","rajgarh","sangarh","shillai","sirmaur","pachhad","arki","kandaghat","nalagarh","solan","parwano","amb","una","bangana","haroli","garget"];
-    unitLists["Jharkhand"]=["ranchi","hazaribagh","daltonganj","dumka","jamshedpur","chaibasa","gumla","lohardaga","bokarosteelcity","dhanbad","giridih","koderma","chatra","garhwa","deoghar",
-                  "pakur","godda","sahibganj","latehar","simdega","jamtara","saraikelakharsawan","khunti","ramgarh"];	
-
-
-
- 
+			unitLists["Assam"] = ["Guwahati","Kamrup", "Nagaon", "Jorhat","Sibsagar","Golaghat","Dibrugarh","Kakhimpur","Dimahasao", "Karbianglong", "Karimganj", "Cachar","Sonitpur","Darrang","Nalbari","Barpeta","Kokrajhar", "Dhubri", "Goalpara", "Bongaigaon","Assam State Transport Corporation","ASTC","Marigaon","Dhemaji","Tinsukia", "Hailakandi","Kamruprural","Chirang","Udalguri","Baksa","Assam","Assam Police Vehicles"];
+			unitLists["Bihar"] = ["Patna","Sitamarhi","Gaya","Vaishali","Bhojpur","Madhubani","Chapra","Samastipur","Motihari","Khagaria","Muzaffarpur","Kishanganj","Darbhanga","Araria","Munger","Katihar","Begusarai","Madhepura","Bhagalpur","Buxar","Purnea","Bhabua","Saharsa","Jamui","Nalanda","Supaul","Bettiah","Anka","Dehri","Sheikhpura","Jehanabad","Lakhisarai","Aurangabad","Sheohar","Nawada","Arwal","Gopalganj","Rohtas","Siwan"];
+			unitLists["Chandigarh"] = ["chandigarh","commercialvehicles"];
+			unitLists["Dadra and Nagar Haveli"] = ["dadraandnagarhaveli"];
+			unitLists["Daman and Diu"] = ["diu","daman"];
+			unitLists["Delhi"] = ["northdelhi","newdelhi","southdelhi","janakpuriwest","northeastdelhi","centraldelhi","eastdelhi","northwestdelhi","southwestdelhi","westdelhi","rohini","vasantvihar","surajmalvihar","sonipat","gurgaon","faridabad","noida","ghaziabad"];
+			unitLists["Goa"] = ["panajinorth","margao","mapusa","bicholim","ponda","vasco","panaji","margao","quepem","canacona","pernem","dharbandora"];
+			unitLists["Gujarat"] = ["ahmedabad","bardoli","dahod","mehsana","navsari","rajkot","rajpipla","bhavnagar","anand","surat","patan","vadodara","porbander","nadiad","vyara","palanpur","ahmedabadeast","himmatnagar","surat","pal","jamnagar","vadodara","darjipura","junagadh","ahvadang","bhuj","modasa","arvalli","surendranagar","veraval","girsomnath","amreli","botad","valsad","chhotaUdepur","bharuch","mahisagar","lunawada","godhra","morbi","gandhinagar","khambhaliya","bavla"];
+			unitLists["Jammu and Kashmir"] = ["srinagar","poonch","jammu","pulwama","anantnag","udhampur","budgam","bandipora","baramulla","ganderbal","doda","kishtwar","kargil","kulgam","kathua","ramban","kupwara","reasi","leh","samba","rajouri","shopian"];
+			unitLists["Odisa"]=["balasore","bhubaneswar","balangir","chandikhole","cuttack","dhenkanal"," ganjam"," kalahandi","keonjhar","koraput","mayurbhanj","phulabani","puri","rourkela","sambalpur","sundergarh"," baragarh","rayagada","angul","gajapati","jagatsinghpur","bhadrak","jharsuguda","nabarangpur"," nayagarh","nuapada","boudh","debagarh","kendrapada"," malkangiri","sonepur","bhanjanagar","bhubaneswar-II","jajpur","talcher"];
+			unitLists["Kerala"]=["thiruvananthapuram","kollam","pathanamthitta","alappuzha","kottayam","idukki","ernakulam","thrissur","palakkad","malappuram","kozhikode","wayanad","kannur","kasargode","kerala","attingal","muvattupuzha","vadakara","parassala","neyyattinkara","nedumangad","kazhakkoottam","karunagapally","kottarakara","punalur","adoor","thiruvalla","mallappally","kayamkulam","chengannur","mavelikara","cherthala","changanassery","kanjirappally","pala","vaikom","vandiperiyar","thodupuzha","thripunithura","perumbavoor","aluva","northparavur","mattancherry","kothamangalam","irinjalakuda","guruvayur","kodungallur","wadakkancherry","alathur","mannarghat","ottappalam","pattambi","perinthalmanna","ponnani","tirur","koyilandi","koduvally","thalassery","taliparamba","kanhangad","kunnathur","ranni","Angamaly","Chalakkudy","Thirurangadi","kuttanadu","uzhavoor","devikulam","udumbanchola"];
+			unitLists["Karnataka"]=["bengalurucentral","bengaluruwest","bengalurueast","bengalurunorth","bengalurusouth","tumakuru","kolar","kgf","mysuruwest","chamarajanagar","mandya","madikeri","hassan","sagar","chitradurga","shivamogga","davanagere","chikkamagaluru","mangaluru","udupi","puttur","belagavi","chikkodi","bailahongal","dharwad","gadag","haveri","vijayapura","bagalkote","karwar","sirsi","kalaburgi","yadagiri","bellari","hosapete","raichur","koppal","bidar","bhalki","chickballapura","jnanabharathi","ramanagar","devanahalli","tiptur","hunsur","sakaleshpura","honnavar","jamkhandi","gokak","yelahanka","electroniccity","nelamangala","krishnarajapuram","nagamangala","mysurseast","basavakalyana","arstur","banashankari","chandapura","rtnagar","marathalli","surathkal","dakshinakannada","dh	arwdeast","madhugiri","tumakuru","dandeliuttara","kannada","tarikerechikkamagaluru","chintamani","chikkaballapur","ranibennurhaveri","ramadurgabelagavi","bantwaladakshinakannada"];
+			unitLists["Haryana"]=["ambala","yamunanagar","panchkula","naraingarh","karnal","panipat","kurukshetra","kaithal","guhla","sonepat","gohana","rohtak","bahadurgarh","jhajjar","meham","bhiwani","siwani","loharu","charkhidadri","hisar","hansi","fatehabad","tohana","sirsa","dabwali","gurgaon","nuh","ferozpurjhirka","ballabgarh","palwal","jind","narwana","safidon","mohindegarh","narnaul","rewari","faridabad","assandh","pehowa","ganaur","kosli","ellenabad","chandigarh","bilsapur","gurgaonsouth","mewat","indri","pataudi","beri","sahabad","kharkoda","barwala","bawal","kanina","kalayat","badkhal","badhra","uchana","gharaunda","radaur","punhana","kalanwali","sampla"];			
+			unitLists["Himachal Pradesh"]=["bilasput","ghumarwin","jhandutta","nainadevijiatswarghat","bharmaur","chowari","churah","chamba","dalhousie","pangi","salooni","barsar","bhoranj","hamirpur","nadaun","sujanpur","bajinath","dharamshala","dehara","jawali","jaisinghpur","kangra","nurpur","palampur","fatehpur","shahpur","nagrotabagwan","kangra","dheera","indora","nichar","kalpa","pooh","anni","banjar","kullu","manali","keylong","kaza","udaipur","gohar","jogindernagar","karsog","mandisadar","padhar","sarkaghat","sundernagar","dharampur","balh","thunag","mandi","chopal","dodrakawar","rampur","rohru","shimlaurban","shimlarural","theog","kumarsain","shimla","rampur","nahan","paontasahib","rajgarh","sangarh","shillai","sirmaur","pachhad","arki","kandaghat","nalagarh","solan","parwano","amb","una","bangana","haroli","garget"];
+			unitLists["Jharkhand"]=["ranchi","hazaribagh","daltonganj","dumka","jamshedpur","chaibasa","gumla","lohardaga","bokarosteelcity","dhanbad","giridih","koderma","chatra","garhwa","deoghar","pakur","godda","sahibganj","latehar","simdega","jamtara","saraikelakharsawan","khunti","ramgarh"];		
  
  /* unitMenuChange() is called from the onchange event of a select element. 
  * param selectObj - the select object which fired the on change event. 
